@@ -231,7 +231,8 @@ export abstract class BaseStrategy implements Strategy {
     );
     const versionsMap = await this.updateVersionsMap(
       await this.buildVersionsMap(conventionalCommits),
-      conventionalCommits
+      conventionalCommits,
+      newVersion
     );
     const component = await this.getComponent();
     logger.debug('component:', component);
@@ -308,7 +309,8 @@ export abstract class BaseStrategy implements Strategy {
 
   protected async updateVersionsMap(
     versionsMap: VersionsMap,
-    conventionalCommits: ConventionalCommit[]
+    conventionalCommits: ConventionalCommit[],
+    _newVersion: Version
   ): Promise<VersionsMap> {
     for (const versionKey of versionsMap.keys()) {
       const version = versionsMap.get(versionKey);
