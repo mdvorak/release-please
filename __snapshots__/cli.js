@@ -36,10 +36,10 @@ Options:
                                                                         [string]
   --release-type                what type of repo is a release being created
                                 for?
-           [choices: "dart", "dotnet-yoshi", "elixir", "go", "go-yoshi", "helm",
-         "java-backport", "java-bom", "java-lts", "java-yoshi", "krm-blueprint",
-    "node", "ocaml", "php", "php-yoshi", "python", "ruby", "ruby-yoshi", "rust",
-                                                   "simple", "terraform-module"]
+      [choices: "dotnet-yoshi", "go", "go-yoshi", "java-yoshi", "java-backport",
+   "java-bom", "java-lts", "krm-blueprint", "node", "ocaml", "php", "php-yoshi",
+   "python", "ruby", "ruby-yoshi", "rust", "simple", "terraform-module", "helm",
+                                                               "elixir", "dart"]
   --config-file                 where can the config file be found in the
                                 project? [default: "release-please-config.json"]
   --manifest-file               where can the manifest file be found in the
@@ -176,7 +176,7 @@ Options:
   --snapshot                        is it a snapshot (or pre-release) being
                                     generated?        [boolean] [default: false]
   --versioning-strategy             strategy used for bumping versions
-  [choices: "default", "always-bump-patch", "service-pack"] [default: "default"]
+  [choices: "always-bump-patch", "default", "service-pack"] [default: "default"]
   --changelog-path                  where can the CHANGELOG be found in the
                                     project?  [string] [default: "CHANGELOG.md"]
   --changelog-type                  type of changelog to build
@@ -214,10 +214,10 @@ Options:
                                                                         [string]
   --release-type                    what type of repo is a release being created
                                     for?
-           [choices: "dart", "dotnet-yoshi", "elixir", "go", "go-yoshi", "helm",
-         "java-backport", "java-bom", "java-lts", "java-yoshi", "krm-blueprint",
-    "node", "ocaml", "php", "php-yoshi", "python", "ruby", "ruby-yoshi", "rust",
-                                                   "simple", "terraform-module"]
+      [choices: "dotnet-yoshi", "go", "go-yoshi", "java-yoshi", "java-backport",
+   "java-bom", "java-lts", "krm-blueprint", "node", "ocaml", "php", "php-yoshi",
+   "python", "ruby", "ruby-yoshi", "rust", "simple", "terraform-module", "helm",
+                                                               "elixir", "dart"]
   --config-file                     where can the config file be found in the
                                     project?
                                          [default: "release-please-config.json"]

@@ -13,14 +13,39 @@
 // limitations under the License.
 
 export * as Errors from './errors';
-export {Manifest, ReleaserConfig, ManifestOptions} from './manifest';
 export {
-  ReleaseType,
-  getReleaserTypes,
-  VersioningStrategyType,
-  getVersioningStrategyTypes,
+  Manifest,
+  ReleaserConfig,
+  ManifestOptions,
+  PluginType,
+} from './manifest';
+export {Commit, ConventionalCommit} from './commit';
+export {BaseStrategyOptions, BuildUpdatesOptions} from './strategies/base';
+export {
+  AnyStrategyOptions,
+  ChangelogNotesBuilder,
+  ChangelogNotesFactoryOptions,
   ChangelogNotesType,
+  PluginBuilder,
+  PluginFactoryOptions,
+  ReleaseBuilder,
+  ReleaseType,
+  VersioningStrategyBuilder,
+  VersioningStrategyFactoryOptions,
+  VersioningStrategyType,
   getChangelogTypes,
+  getPluginTypes,
+  getReleaserTypes,
+  getVersioningStrategyTypes,
+  registerChangelogNotes,
+  registerPlugin,
+  registerReleaseType,
+  registerVersioningStrategy,
 } from './factory';
+export {
+  BuildNotesOptions,
+  ChangelogNotes,
+  ChangelogSection,
+} from './changelog-notes';
 export {Logger, setLogger} from './util/logger';
 export {GitHub} from './github';
