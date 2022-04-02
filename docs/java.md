@@ -4,8 +4,6 @@ This strategy generates SNAPSHOT versions after each release. Snapshot is create
 
 Snapshot bumps have `autorelease: snapshot` label.
 
-_TODO add screenshot of snapshot bump_
-
 ## `java` Strategy
 
 General-purpose Java strategy, that does not update any files on its own.
@@ -21,4 +19,4 @@ Updates all found `pom.xml` files (recursively) using `pom` updater.
 Updates `/project/version` to current version automatically.
 
 If version is not set, it tries to update `/project/parent/version`, assuming it is submodule which inherits version from its parent and should be bumped too. 
-If this behavior is not intended, use `generic` or `xml` updaters via `extra-files`.
+If this behavior is not intended, use `generic` or `xml` updater via `extra-files`.
