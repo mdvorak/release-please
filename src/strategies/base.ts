@@ -305,33 +305,30 @@ export abstract class BaseStrategy implements Strategy {
 
   private extraFileUpdates(version: Version): Update[] {
     return this.extraFiles.map(extraFile => {
-      if (typeof extraFile === 'object') {
-        switch (extraFile.type) {
-          case 'json':
-            return {
-              path: this.addPath(extraFile.path),
-              createIfMissing: false,
-              updater: new GenericJson(extraFile.jsonpath, version),
-            };
-          case 'xml':
-            return {
-              path: this.addPath(extraFile.path),
-              createIfMissing: false,
-              updater: new GenericXml(extraFile.xpath, version),
-            };
-          default:
-            throw new Error(
-              `unsupported extraFile type: ${
-                (extraFile as {type: string}).type
-              }`
-            );
-        }
+      switch (extraFile.type) {
+        case 'json':
+          return {
+            path: this.addPath(extraFile.path),
+            createIfMissing: false,
+            updater: new GenericJson(extraFile.jsonpath, version),
+          };
+        case 'xml':
+          return {
+            path: this.addPath(extraFile.path),
+            createIfMissing: false,
+            updater: new GenericXml(extraFile.xpath, version),
+          };
+        case 'generic':
+          return {
+            path: this.addPath(extraFile.path),
+            createIfMissing: false,
+            updater: new Generic({version}),
+          };
+        default:
+          throw new Error(
+            `unsupported extraFile type: ${(extraFile as {type: string}).type}`
+          );
       }
-      return {
-        path: this.addPath(extraFile),
-        createIfMissing: false,
-        updater: new Generic({version}),
-      };
     });
   }
 

@@ -37,18 +37,28 @@ import {PullRequestBody} from './util/pull-request-body';
 import {Merge} from './plugins/merge';
 import {ReleasePleaseManifest} from './updaters/release-please-manifest';
 import {DuplicateReleaseError} from './errors';
+import {ExtraFileConfig} from './factories/updater-factory';
 
-type ExtraJsonFile = {
+export interface ExtraConfigurableFile {
+  path: string;
+}
+
+export interface ExtraGenericFile extends ExtraConfigurableFile {
+  type: 'generic';
+}
+
+export interface ExtraJsonFile extends ExtraConfigurableFile {
   type: 'json';
-  path: string;
   jsonpath: string;
-};
-type ExtraXmlFile = {
+}
+
+export interface ExtraXmlFile extends ExtraConfigurableFile {
   type: 'xml';
-  path: string;
   xpath: string;
-};
-export type ExtraFile = string | ExtraJsonFile | ExtraXmlFile;
+}
+
+export type ExtraFile = ExtraGenericFile | ExtraJsonFile | ExtraXmlFile;
+
 /**
  * These are configurations provided to each strategy per-path.
  */
@@ -72,6 +82,7 @@ export interface ReleaserConfig {
   includeVInTag?: boolean;
   pullRequestTitlePattern?: string;
   tagSeparator?: string;
+  extraFiles?: ExtraFileConfig[];
 
   // Changelog options
   changelogSections?: ChangelogSection[];
@@ -80,8 +91,6 @@ export interface ReleaserConfig {
 
   // Ruby-only
   versionFile?: string;
-  // Java-only
-  extraFiles?: ExtraFile[];
 }
 
 export interface CandidateReleasePullRequest {
@@ -114,11 +123,10 @@ interface ReleaserConfigJson {
   'changelog-type'?: ChangelogNotesType;
   'pull-request-title-pattern'?: string;
   'tag-separator'?: string;
+  'extra-files'?: ExtraFileConfig[];
 
   // Ruby-only
   'version-file'?: string;
-  // Java-only
-  'extra-files'?: string[];
 }
 
 export interface ManifestOptions {

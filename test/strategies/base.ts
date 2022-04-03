@@ -77,7 +77,13 @@ describe('Strategy', () => {
         targetBranch: 'main',
         github,
         component: 'google-cloud-automl',
-        extraFiles: ['0', 'foo/1.~csv', 'foo/2.bak', 'foo/baz/bar/', '/3.java'],
+        extraFiles: [
+          '0',
+          'foo/1.~csv',
+          'foo/2.bak',
+          'foo/baz/bar/',
+          '/3.java',
+        ].map(f => ({type: 'generic', path: f})),
       });
       const pullRequest = await strategy.buildReleasePullRequest(
         [{sha: 'aaa', message: 'fix: a bugfix'}],
@@ -100,7 +106,10 @@ describe('Strategy', () => {
         targetBranch: 'main',
         github,
         component: 'google-cloud-automl',
-        extraFiles: ['0', {type: 'json', path: '/3.json', jsonpath: '$.foo'}],
+        extraFiles: [
+          {type: 'generic', path: '0'},
+          {type: 'json', path: '/3.json', jsonpath: '$.foo'},
+        ],
       });
       const pullRequest = await strategy.buildReleasePullRequest(
         [{sha: 'aaa', message: 'fix: a bugfix'}],
@@ -117,7 +126,10 @@ describe('Strategy', () => {
         targetBranch: 'main',
         github,
         component: 'google-cloud-automl',
-        extraFiles: ['0', {type: 'xml', path: '/3.xml', xpath: '$.foo'}],
+        extraFiles: [
+          {type: 'generic', path: '0'},
+          {type: 'xml', path: '/3.xml', xpath: '$.foo'},
+        ],
       });
       const pullRequest = await strategy.buildReleasePullRequest(
         [{sha: 'aaa', message: 'fix: a bugfix'}],
@@ -147,7 +159,7 @@ describe('Strategy', () => {
             targetBranch: 'main',
             github,
             component: 'google-cloud-automl',
-            extraFiles: [file],
+            extraFiles: [{type: 'generic', path: file}],
           });
           await strategy.buildReleasePullRequest(
             [{sha: 'aaa', message: 'fix: a bugfix'}],

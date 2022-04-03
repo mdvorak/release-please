@@ -39,10 +39,12 @@ import {BaseStrategyOptions} from './strategies/base';
 import {DotnetYoshi} from './strategies/dotnet-yoshi';
 import {buildVersioningStrategy} from './factories/versioning-strategy-factory';
 import {buildChangelogNotes} from './factories/changelog-notes-factory';
+import {parseExtraFileConfig} from './factories/updater-factory';
 
 export * from './factories/changelog-notes-factory';
 export * from './factories/plugin-factory';
 export * from './factories/versioning-strategy-factory';
+export * from './factories/updater-factory';
 
 // Factory shared by GitHub Action and CLI for creating Release PRs
 // and GitHub Releases:
@@ -135,7 +137,7 @@ export async function buildStrategy(
     includeComponentInTag: options.includeComponentInTag,
     changelogNotes,
     pullRequestTitlePattern: options.pullRequestTitlePattern,
-    extraFiles: options.extraFiles,
+    extraFiles: options.extraFiles?.map(parseExtraFileConfig),
     tagSeparator: options.tagSeparator,
     versionFile: options.versionFile,
     // TODO snapshotLabels: options.snapshotLabels,
